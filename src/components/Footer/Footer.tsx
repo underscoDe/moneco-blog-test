@@ -4,7 +4,7 @@ import Logo from '@/components/Logo';
 
 function Footer() {
   return (
-    <section className='fixed bottom-0 w-full bg-[#f6f9f8] pb-10 pt-12'>
+    <section className='w-full bg-[#f6f9f8] pb-10 pt-12'>
       <div className='mx-auto lg:max-w-[92%]'>
         <Logo variant='common' className='mb-12' />
         <div className='font-outfit text-[#7d9790]'>
