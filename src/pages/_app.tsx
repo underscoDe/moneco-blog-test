@@ -1,21 +1,15 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AppProps } from 'next/app';
-import { Inter, Paytone_One } from 'next/font/google';
+import { Outfit } from 'next/font/google';
 import NextNProgress from 'nextjs-progressbar';
 import { ToastContainer } from 'react-toastify';
 
 import '@/styles/globals.css';
 import '@/styles/colors.css';
 
-const inter = Inter({
+const outfit = Outfit({
   subsets: ['latin'],
-  variable: '--inter-font',
-});
-
-const paytone = Paytone_One({
-  weight: ['400'],
-  subsets: ['latin'],
-  variable: '--paytone-font',
+  variable: '--outfit',
 });
 
 const queryClient = new QueryClient();
@@ -25,8 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <style jsx global>{`
         :root {
-          --inter-font: ${inter.style.fontFamily};
-          --paytone-font: ${paytone.style.fontFamily};
+          --outfit: ${outfit.style.fontFamily};
         }
       `}</style>
       <QueryClientProvider client={queryClient}>
