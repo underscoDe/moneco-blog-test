@@ -52,6 +52,8 @@ module.exports = {
           ['^@/lib', '^@/hooks'],
           // static data
           ['^@/data'],
+          // static context
+          ['^@/context'],
           // components
           ['^@/components', '^@/container'],
           // zustand store

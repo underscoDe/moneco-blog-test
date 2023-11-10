@@ -1,8 +1,7 @@
-import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { IconType } from 'react-icons';
 
-import { cn } from '@/lib/utils';
+import clsxm from '@/lib/clsxm';
 
 import UnstyledLink, {
   UnstyledLinkProps,
@@ -21,12 +20,10 @@ type ButtonLinkProps = {
   isDarkBg?: boolean;
   variant?: (typeof ButtonLinkVariant)[number];
   size?: (typeof ButtonLinkSize)[number];
-  leftIcon?: IconType | LucideIcon;
-  rightIcon?: IconType | LucideIcon;
-  classNames?: {
-    leftIcon?: string;
-    rightIcon?: string;
-  };
+  leftIcon?: IconType;
+  rightIcon?: IconType;
+  leftIconClassName?: string;
+  rightIconClassName?: string;
 } & UnstyledLinkProps;
 
 const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
@@ -39,7 +36,8 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       isDarkBg = false,
       leftIcon: LeftIcon,
       rightIcon: RightIcon,
-      classNames,
+      leftIconClassName,
+      rightIconClassName,
       ...rest
     },
     ref
@@ -48,7 +46,7 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       <UnstyledLink
         ref={ref}
         {...rest}
-        className={cn(
+        className={clsxm(
           'inline-flex items-center rounded font-medium',
           'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
           'shadow-sm',
@@ -101,19 +99,18 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
       >
         {LeftIcon && (
           <div
-            className={cn([
+            className={clsxm([
               size === 'base' && 'mr-1',
               size === 'sm' && 'mr-1.5',
             ])}
           >
             <LeftIcon
-              size='1em'
-              className={cn(
+              className={clsxm(
                 [
                   size === 'base' && 'md:text-md text-md',
                   size === 'sm' && 'md:text-md text-sm',
                 ],
-                classNames?.leftIcon
+                leftIconClassName
               )}
             />
           </div>
@@ -121,19 +118,18 @@ const ButtonLink = React.forwardRef<HTMLAnchorElement, ButtonLinkProps>(
         {children}
         {RightIcon && (
           <div
-            className={cn([
+            className={clsxm([
               size === 'base' && 'ml-1',
               size === 'sm' && 'ml-1.5',
             ])}
           >
             <RightIcon
-              size='1em'
-              className={cn(
+              className={clsxm(
                 [
                   size === 'base' && 'text-md md:text-md',
                   size === 'sm' && 'md:text-md text-sm',
                 ],
-                classNames?.rightIcon
+                rightIconClassName
               )}
             />
           </div>

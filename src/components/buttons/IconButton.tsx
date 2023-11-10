@@ -1,9 +1,8 @@
-import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { IconType } from 'react-icons';
 import { ImSpinner2 } from 'react-icons/im';
 
-import { cn } from '@/lib/utils';
+import clsxm from '@/lib/clsxm';
 
 const IconButtonVariant = [
   'primary',
@@ -17,10 +16,8 @@ type IconButtonProps = {
   isLoading?: boolean;
   isDarkBg?: boolean;
   variant?: (typeof IconButtonVariant)[number];
-  icon?: IconType | LucideIcon;
-  classNames?: {
-    icon?: string;
-  };
+  icon?: IconType;
+  iconClassName?: string;
 } & React.ComponentPropsWithRef<'button'>;
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -32,7 +29,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       variant = 'primary',
       isDarkBg = false,
       icon: Icon,
-      classNames,
+      iconClassName,
       ...rest
     },
     ref
@@ -44,7 +41,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         type='button'
         disabled={disabled}
-        className={cn(
+        className={clsxm(
           'inline-flex items-center justify-center rounded font-medium',
           'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
           'shadow-sm',
@@ -95,7 +92,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       >
         {isLoading && (
           <div
-            className={cn(
+            className={clsxm(
               'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
               {
                 'text-white': ['primary', 'dark'].includes(variant),
@@ -107,7 +104,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
             <ImSpinner2 className='animate-spin' />
           </div>
         )}
-        {Icon && <Icon size='1em' className={cn(classNames?.icon)} />}
+        {Icon && <Icon className={clsxm(iconClassName)} />}
       </button>
     );
   }

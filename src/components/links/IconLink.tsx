@@ -1,8 +1,7 @@
-import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { IconType } from 'react-icons';
 
-import { cn } from '@/lib/utils';
+import clsxm from '@/lib/clsxm';
 
 import UnstyledLink, {
   UnstyledLinkProps,
@@ -19,10 +18,8 @@ const IconLinkVariant = [
 type IconLinkProps = {
   isDarkBg?: boolean;
   variant?: (typeof IconLinkVariant)[number];
-  icon?: IconType | LucideIcon;
-  classNames?: {
-    icon?: string;
-  };
+  icon?: IconType;
+  iconClassName?: string;
 } & Omit<UnstyledLinkProps, 'children'>;
 
 const IconLink = React.forwardRef<HTMLAnchorElement, IconLinkProps>(
@@ -32,7 +29,7 @@ const IconLink = React.forwardRef<HTMLAnchorElement, IconLinkProps>(
       icon: Icon,
       variant = 'outline',
       isDarkBg = false,
-      classNames,
+      iconClassName,
       ...rest
     },
     ref
@@ -41,7 +38,7 @@ const IconLink = React.forwardRef<HTMLAnchorElement, IconLinkProps>(
       <UnstyledLink
         ref={ref}
         type='button'
-        className={cn(
+        className={clsxm(
           'inline-flex items-center justify-center rounded font-medium',
           'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
           'shadow-sm',
@@ -88,7 +85,7 @@ const IconLink = React.forwardRef<HTMLAnchorElement, IconLinkProps>(
         )}
         {...rest}
       >
-        {Icon && <Icon size='1em' className={cn(classNames?.icon)} />}
+        {Icon && <Icon className={clsxm(iconClassName)} />}
       </UnstyledLink>
     );
   }

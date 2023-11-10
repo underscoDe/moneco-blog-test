@@ -6,51 +6,57 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...defaultTheme.fontFamily.sans],
+        paytone: ['var(--paytone-font)', ...defaultTheme.fontFamily.sans],
+        inter: ['var(--inter-font)', ...defaultTheme.fontFamily.sans],
+        primary: ['Paytone One', ...defaultTheme.fontFamily.sans],
+        secondary: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+      backgroundImage: {
+        hero: "linear-gradient(to right, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url('/images/hero-bg.jpg')",
+        'hero-farmers':
+          "linear-gradient(to right, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url('/images/hero-farmers-bg.jpg')",
+        'hero-smes':
+          "linear-gradient(to right, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url('/images/hero-smes-bg.jpg')",
+        'hero-contact':
+          "linear-gradient(to right, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url('/images/hero-contact-bg.jpg')",
+        'hero-about':
+          "linear-gradient(to right, rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url('/images/hero-about-bg.jpg')",
       },
       colors: {
-        primary: {
-          // Customize it on globals.css :root
-          50: 'rgb(var(--tw-color-primary-50) / <alpha-value>)',
-          100: 'rgb(var(--tw-color-primary-100) / <alpha-value>)',
-          200: 'rgb(var(--tw-color-primary-200) / <alpha-value>)',
-          300: 'rgb(var(--tw-color-primary-300) / <alpha-value>)',
-          400: 'rgb(var(--tw-color-primary-400) / <alpha-value>)',
-          500: 'rgb(var(--tw-color-primary-500) / <alpha-value>)',
-          600: 'rgb(var(--tw-color-primary-600) / <alpha-value>)',
-          700: 'rgb(var(--tw-color-primary-700) / <alpha-value>)',
-          800: 'rgb(var(--tw-color-primary-800) / <alpha-value>)',
-          900: 'rgb(var(--tw-color-primary-900) / <alpha-value>)',
-          950: 'rgb(var(--tw-color-primary-950) / <alpha-value>)',
-        },
+        primary: 'hsl(var(--moneco-color-primary))',
         dark: '#222222',
+        ring: '#f7b132',
       },
-      keyframes: {
-        flicker: {
-          '0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%': {
-            opacity: '0.99',
-            filter:
-              'drop-shadow(0 0 1px rgba(252, 211, 77)) drop-shadow(0 0 15px rgba(245, 158, 11)) drop-shadow(0 0 1px rgba(252, 211, 77))',
-          },
-          '20%, 21.999%, 63%, 63.999%, 65%, 69.999%': {
-            opacity: '0.4',
-            filter: 'none',
-          },
-        },
-        shimmer: {
-          '0%': {
-            backgroundPosition: '-700px 0',
-          },
-          '100%': {
-            backgroundPosition: '700px 0',
-          },
-        },
+      fontSize: {
+        14: 'calc(14 / 16 * 1rem)',
+        24: 'calc(24 / 16 * 1rem)',
+        30: 'calc(30 / 16 * 1rem)',
+        38: 'calc(38 / 16 * 1rem)',
+        48: 'calc(48 / 16 * 1rem)',
+        56: 'calc(56 / 16 * 1rem)',
+        64: 'calc(64 / 16 * 1rem)',
+        72: 'calc(72 / 16 * 1rem)',
+        '30r': 'clamp(1rem, 0.825rem + 0.8750000000000001vw, 1.875rem)',
+        '48r': 'clamp(2.375rem, 2.25rem + 0.625vw, 3rem)',
+        '50r': 'clamp(2.375rem, 2.225rem + 0.75vw, 3.125rem)',
+        '56r': 'clamp(2.375rem, 2.15rem + 1.125vw, 3.5rem)',
+        '64r': 'clamp(1.875rem, 1.45rem + 2.125vw, 4rem)',
+        '72r': 'clamp(3.75rem, 3.6rem + 0.75vw, 4.5rem)',
+        'hero-title': 'clamp(2.25rem, 2.04rem + 1.0499999999999998vw, 3.3rem)',
+        'benefit-title':
+          'clamp(3.2rem, 2.9400000000000004rem + 1.2999999999999998vw, 4.5rem)',
       },
-      animation: {
-        flicker: 'flicker 3s linear infinite',
-        shimmer: 'shimmer 1.3s linear infinite',
+      screens: {
+        '640': '40rem',
+        '992': '62rem',
+        '1259': '78.6875rem',
+        '1280': '80rem',
+        '1400': '87.5rem',
       },
     },
   },
+  variants: {
+    fill: ['hover', 'focus'],
+  },
   plugins: [require('@tailwindcss/forms')],
-} satisfies Config;
+} as Config;

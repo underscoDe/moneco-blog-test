@@ -1,9 +1,8 @@
-import { LucideIcon } from 'lucide-react';
 import * as React from 'react';
 import { IconType } from 'react-icons';
 import { ImSpinner2 } from 'react-icons/im';
 
-import { cn } from '@/lib/utils';
+import clsxm from '@/lib/clsxm';
 
 const ButtonVariant = ['primary', 'outline', 'ghost', 'light', 'dark'] as const;
 const ButtonSize = ['sm', 'base'] as const;
@@ -13,12 +12,10 @@ type ButtonProps = {
   isDarkBg?: boolean;
   variant?: (typeof ButtonVariant)[number];
   size?: (typeof ButtonSize)[number];
-  leftIcon?: IconType | LucideIcon;
-  rightIcon?: IconType | LucideIcon;
-  classNames?: {
-    leftIcon?: string;
-    rightIcon?: string;
-  };
+  leftIcon?: IconType;
+  rightIcon?: IconType;
+  leftIconClassName?: string;
+  rightIconClassName?: string;
 } & React.ComponentPropsWithRef<'button'>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -33,7 +30,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isDarkBg = false,
       leftIcon: LeftIcon,
       rightIcon: RightIcon,
-      classNames,
+      leftIconClassName,
+      rightIconClassName,
       ...rest
     },
     ref
@@ -45,7 +43,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type='button'
         disabled={disabled}
-        className={cn(
+        className={clsxm(
           'inline-flex items-center rounded font-medium',
           'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
           'shadow-sm',
@@ -101,7 +99,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading && (
           <div
-            className={cn(
+            className={clsxm(
               'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
               {
                 'text-white': ['primary', 'dark'].includes(variant),
@@ -115,19 +113,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {LeftIcon && (
           <div
-            className={cn([
+            className={clsxm([
               size === 'base' && 'mr-1',
               size === 'sm' && 'mr-1.5',
             ])}
           >
             <LeftIcon
-              size='1em'
-              className={cn(
+              className={clsxm(
                 [
                   size === 'base' && 'md:text-md text-md',
                   size === 'sm' && 'md:text-md text-sm',
                 ],
-                classNames?.leftIcon
+                leftIconClassName
               )}
             />
           </div>
@@ -135,19 +132,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
         {RightIcon && (
           <div
-            className={cn([
+            className={clsxm([
               size === 'base' && 'ml-1',
               size === 'sm' && 'ml-1.5',
             ])}
           >
             <RightIcon
-              size='1em'
-              className={cn(
+              className={clsxm(
                 [
                   size === 'base' && 'text-md md:text-md',
                   size === 'sm' && 'md:text-md text-sm',
                 ],
-                classNames?.rightIcon
+                rightIconClassName
               )}
             />
           </div>
