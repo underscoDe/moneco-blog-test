@@ -3,7 +3,7 @@ import * as React from 'react';
 import Logo from '@/components/Logo';
 
 interface NavProps {
-  logoVariant: 'white' | 'black';
+  logoVariant: 'white' | 'black' | 'common';
   backgroundColor: string;
 }
 

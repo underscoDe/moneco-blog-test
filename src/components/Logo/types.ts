@@ -1,5 +1,5 @@
 export interface LogoProps {
-  variant: 'white' | 'black';
+  variant: 'white' | 'black' | 'common';
   className?: string;
 }
 
