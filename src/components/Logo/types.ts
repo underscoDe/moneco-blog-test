@@ -1,4 +1,5 @@
 export interface LogoProps {
+  variant: string;
   className?: string;
 }
 
