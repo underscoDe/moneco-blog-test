@@ -1,3 +1,3 @@
-import Article from './Article';
+import Article from './article/Article';
 
 export { Article };

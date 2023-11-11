@@ -1,8 +1,12 @@
 import * as React from 'react';
 
+import useFetchArticles from '@/hooks/useFetchArticles';
+
 import BlogCard from '@/components/Articles/Blog';
 
 function Articles() {
+  const { data, isError, isLoading } = useFetchArticles();
+
   return (
     <section aria-label='Related articles' className='bg-gray-50 py-8 lg:py-28'>
       <div className='mx-auto max-w-[70%] px-4'>
