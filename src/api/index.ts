@@ -1,8 +1,8 @@
 import { Mixin } from 'ts-mixer';
 
-import { Auth, LoanRequest } from '@/entities';
+import { Article } from '@/entities';
 
-class API extends Mixin(Auth, LoanRequest) {}
+class API extends Mixin(Article) {}
 
 const api = new API();
 export default api;
