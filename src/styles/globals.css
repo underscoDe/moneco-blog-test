@@ -4,15 +4,17 @@
 
 :root {
   /* #region  /**=========== Primary Color =========== */
-  --moneco-color-primary: 227 27% 26% / 1;
+  --moneco-color-primary: 163 89% 34% / 1;
+  --moneco-color-secondary: 50 100% 95% / 1;
   --moneco-primary: rgb(var(--moneco-color-primary)); /* #313956 */
+  --moneco-secondary: rgb(var(--moneco-color-secondary)); /* #fff8e6 */
   /* #endregion  /**======== Primary Color =========== */
 }
 
 @layer base {
   body {
     overflow-x: clip;
-    font-family: var(--font-paytone);
+    font-family: var(--outfit);
   }
 
   .cursor-newtab {

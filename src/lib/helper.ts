@@ -70,3 +70,13 @@ export const showToast = (
       break;
   }
 };
+
+export function calculateReadingTime(content: string): number {
+  // Assuming an average reading speed of 200 words per minute
+  const wordsPerMinute = 200;
+
+  const wordCount = content.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / wordsPerMinute);
+
+  return readingTime;
+}
