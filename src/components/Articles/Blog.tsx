@@ -10,6 +10,7 @@ interface BlogCardProps {
   excerpt: string;
   createdAt: Date;
   content: string;
+  slug: string;
 }
 
 function BlogCard({
@@ -19,6 +20,7 @@ function BlogCard({
   excerpt,
   createdAt,
   content,
+  slug,
 }: BlogCardProps) {
   const formattedDateDay = new Intl.DateTimeFormat('en-US', {
     month: 'short',
@@ -56,7 +58,7 @@ function BlogCard({
         ))}
       </div>
       <h3 className='font-outfit mb-2 mt-3 text-[20px] text-xl font-bold leading-tight text-gray-900'>
-        <a href='#'>{title}</a>
+        <Link href={`/${slug}`}>{title}</Link>
       </h3>
       <p className='mb-2 text-[14px] font-medium text-black'>{excerpt}</p>
       <span className='items-center text-[14px] font-medium text-[#007554]'>

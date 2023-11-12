@@ -107,6 +107,7 @@ function Articles() {
                   excerpt={article.excerpt}
                   createdAt={new Date(article.createdAt)}
                   content={article.content}
+                  slug={article.slug}
                 />
               ))}
             </div>

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as React from 'react';
+import { FaArrowLeft } from 'react-icons/fa';
 import ReactMarkdown from 'react-markdown';
 
 import { calculateReadingTime } from '@/lib/helper';
@@ -39,6 +40,12 @@ export default function SinglePost() {
         {article ? (
           <div className='mx-auto py-20 lg:max-w-[75%]'>
             <div className='w-full'>
+              <div className=''>
+                <Link className='mb-4 flex items-center' href='/homepage'>
+                  <FaArrowLeft size='1rem' />{' '}
+                  <span className='ml-3 text-[#00122C]'>Go back home</span>
+                </Link>
+              </div>
               <Image
                 width='1536'
                 height='864'
@@ -76,7 +83,22 @@ export default function SinglePost() {
             </div>
           </div>
         ) : (
-          <div></div>
+          <div className='mx-auto py-40 lg:max-w-[75%]'>
+            <Link className='mb-4 flex items-center' href='/homepage'>
+              <FaArrowLeft size='1rem' />{' '}
+              <span className='ml-3 text-[#00122C]'>Go back home</span>
+            </Link>
+            <h5 className='text-center'>
+              Sorry! We looked everywhere, found nothing!
+            </h5>
+            <Image
+              width='1536'
+              height='864'
+              src='/svg/not-found.svg'
+              className='mb-4 mt-10 h-[400px] w-full'
+              alt='Image 1'
+            />
+          </div>
         )}
         <Footer />
       </main>
