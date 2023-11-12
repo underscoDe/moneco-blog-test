@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-import { STRAPI_API_TOKEN } from '@/constant/env';
+import { STRAPI_API_TOKEN, STRAPI_URL } from '@/constant/env';
 
 const client = axios.create({
   //!Put this in .env variable
-  baseURL: 'http://127.0.0.1:1337/api',
+  baseURL: `${STRAPI_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
