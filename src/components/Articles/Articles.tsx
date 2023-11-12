@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import * as React from 'react';
 import { FormEvent } from 'react';
 import { FaUndo } from 'react-icons/fa';
@@ -93,23 +94,38 @@ function Articles() {
             </form>
 
             <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-              {articles.map((article) => (
-                <BlogCard
-                  key={article.id}
-                  title={article.title}
-                  previewUrl={
-                    (article.preview_image?.data?.url &&
-                      `${STRAPI_URL}${article.preview_image?.url}`) ||
-                    `${STRAPI_URL}${article.header_image?.url}` ||
-                    '/images/blog-1.webp'
-                  }
-                  tags={article.tags.map((tag) => tag.name)}
-                  excerpt={article.excerpt}
-                  createdAt={new Date(article.createdAt)}
-                  content={article.content}
-                  slug={article.slug}
-                />
-              ))}
+              {articles.length > 0 ? (
+                articles.map((article) => (
+                  <BlogCard
+                    key={article.id}
+                    title={article.title}
+                    previewUrl={
+                      (article.preview_image?.data?.url &&
+                        `${STRAPI_URL}${article.preview_image?.url}`) ||
+                      `${STRAPI_URL}${article.header_image?.url}` ||
+                      '/images/blog-1.webp'
+                    }
+                    tags={article.tags.map((tag) => tag.name)}
+                    excerpt={article.excerpt}
+                    createdAt={new Date(article.createdAt)}
+                    content={article.content}
+                    slug={article.slug}
+                  />
+                ))
+              ) : (
+                <div className='mx-auto py-40 lg:max-w-[70%]'>
+                  <h5 className='text-center'>
+                    Sorry! No data for the moment!
+                  </h5>
+                  <Image
+                    width='1536'
+                    height='864'
+                    src='/svg/no-data.svg'
+                    className='mb-4 mt-10 h-[400px] w-full'
+                    alt='Image 1'
+                  />
+                </div>
+              )}
             </div>
             <div className='flex flex-wrap justify-center gap-3 p-6 py-12'>
               <Pagination
