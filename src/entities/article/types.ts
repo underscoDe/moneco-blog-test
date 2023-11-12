@@ -1,96 +1,10 @@
-export interface ImageFormat {
-  name: string;
-  hash: string;
-  ext: string;
-  mime: string;
-  path: null | string;
-  width: number;
-  height: number;
-  size: number;
-  url: string;
-}
-
-export interface ImageAttributes {
+export interface Article {
   id: number;
-  name: string;
-  alternativeText: null | string;
-  caption: null | string;
-  width: number;
-  height: number;
-  formats: {
-    thumbnail: ImageFormat;
-    large: ImageFormat;
-    medium: ImageFormat;
-    small: ImageFormat;
-  };
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl: null | string;
-  provider: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  provider_metadata: null | any;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface ImageData {
-  id: number;
-  attributes: ImageAttributes;
-}
-
-export interface TagAttributes {
-  id: number;
-  name: string;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-export interface TagData {
-  id: number;
-  attributes: TagAttributes;
-}
-
-export interface CategoryAttributes {
-  id: number;
-  name: string;
-  slug: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-export interface CategoryData {
-  id: number;
-  attributes: CategoryAttributes;
-}
-
-export interface AuthorAttributes {
-  id: number;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-export interface AuthorData {
-  id: number;
-  attributes: AuthorAttributes;
-}
-
-export interface ArticleAttributes {
   title: string;
-  content: Array<{
+  content: {
     type: string;
-    children: Array<{
-      type: string;
-      text: string;
-    }>;
-  }>;
+    children: { type: string; text: string }[];
+  }[];
   slug: string;
   excerpt: string;
   status: string;
@@ -98,39 +12,134 @@ export interface ArticleAttributes {
   updatedAt: string;
   publishedAt: string;
   header_image: {
-    data: ImageData;
+    id: number;
+    name: string;
+    alternativeText: string | null;
+    caption: string | null;
+    width: number;
+    height: number;
+    formats: {
+      thumbnail: {
+        name: string;
+        hash: string;
+        ext: string;
+        mime: string;
+        path: string | null;
+        width: number;
+        height: number;
+        size: number;
+        url: string;
+      };
+      large: {
+        name: string;
+        hash: string;
+        ext: string;
+        mime: string;
+        path: string | null;
+        width: number;
+        height: number;
+        size: number;
+        url: string;
+      };
+      medium: {
+        name: string;
+        hash: string;
+        ext: string;
+        mime: string;
+        path: string | null;
+        width: number;
+        height: number;
+        size: number;
+        url: string;
+      };
+      small: {
+        name: string;
+        hash: string;
+        ext: string;
+        mime: string;
+        path: string | null;
+        width: number;
+        height: number;
+        size: number;
+        url: string;
+      };
+    };
+    hash: string;
+    ext: string;
+    mime: string;
+    size: number;
+    url: string;
+    previewUrl: string | null;
+    provider: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    provider_metadata: any | null;
+    folderPath: string;
+    createdAt: string;
+    updatedAt: string;
   };
-  preview_image: {
-    data: ImageData | null;
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  preview_image: null | any; // Replace 'any' with the actual type if it's defined
   tags: {
-    data: TagData[];
-  };
+    id: number;
+    name: string;
+    slug: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  }[];
   categories: {
-    data: CategoryData[];
-  };
+    id: number;
+    name: string;
+    slug: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  }[];
   authors: {
-    data: AuthorData[];
+    id: number;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  }[];
+  createdBy: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    username: string | null;
+    email: string;
+    password: string;
+    resetPasswordToken: string | null;
+    registrationToken: string | null;
+    isActive: boolean;
+    blocked: boolean;
+    preferedLanguage: string | null;
+    createdAt: string;
+    updatedAt: string;
   };
-}
-
-export interface ArticleData {
-  id: number;
-  attributes: ArticleAttributes;
-}
-
-export interface MetaPagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-export interface MetaData {
-  pagination: MetaPagination;
+  updatedBy: {
+    id: number;
+    firstname: string;
+    lastname: string;
+    username: string | null;
+    email: string;
+    password: string;
+    resetPasswordToken: string | null;
+    registrationToken: string | null;
+    isActive: boolean;
+    blocked: boolean;
+    preferedLanguage: string | null;
+    createdAt: string;
+    updatedAt: string;
+  };
 }
 
 export interface ApiResponse {
-  data: ArticleData[];
-  meta: MetaData;
+  results: Article[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  };
 }

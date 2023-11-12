@@ -27,8 +27,8 @@ export default function useFetchArticles() {
     },
   });
 
-  const articles = (data as ApiResponse)?.data || [];
-  const meta = (data as ApiResponse)?.meta;
+  const articles = (data as ApiResponse)?.results || [];
+  const meta = (data as ApiResponse)?.pagination;
 
   console.log('meta:', meta);
 
