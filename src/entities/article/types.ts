@@ -1,10 +1,7 @@
 export interface Article {
   id: number;
   title: string;
-  content: {
-    type: string;
-    children: { type: string; text: string }[];
-  }[];
+  content: string;
   slug: string;
   excerpt: string;
   status: string;

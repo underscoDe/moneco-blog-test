@@ -1,44 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { calculateReadingTime } from '@/lib/helper';
+
 interface BlogCardProps {
   title: string;
   previewUrl: string;
   tags: string[];
   excerpt: string;
   createdAt: Date;
-  content: Array<{
-    type: string;
-    children: Array<{
-      type: string;
-      text: string;
-    }>;
-  }>;
-}
-
-interface ContentItem {
-  type: string;
-  children: Array<{
-    type: string;
-    text: string;
-  }>;
-}
-
-function calculateReadingTime(content: ContentItem[]): number {
-  const totalWords = content.reduce((acc, paragraph) => {
-    paragraph.children.forEach((child) => {
-      if (child.type === 'text' && child.text) {
-        acc += child.text.split(/\s+/).length;
-      }
-    });
-    return acc;
-  }, 0);
-
-  // Assuming an average reading speed of 200 words per minute
-  const wordsPerMinute = 200;
-  const readingTime = Math.ceil(totalWords / wordsPerMinute);
-
-  return readingTime;
+  content: string;
 }
 
 function BlogCard({
