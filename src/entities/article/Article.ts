@@ -4,9 +4,17 @@ import { ApiResponse } from '@/entities/article/types';
 import Client from '@/utils/APIClient';
 
 export default class Article {
-  async getArticles(): Promise<ApiResponse> {
+  async getArticles({
+    page,
+    pageSize,
+  }: {
+    page: number;
+    pageSize: number;
+  }): Promise<ApiResponse> {
     try {
-      const response = await Client.get('/articles?populate=*');
+      const response = await Client.get(
+        `/articles?pagination[page]=${page}&pagination[pageSize]=${pageSize}&populate=*`
+      );
       // eslint-disable-next-line no-console
       console.log('ARTICLES:', response.data);
       return response.data as ApiResponse;
